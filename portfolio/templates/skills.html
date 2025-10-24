@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+    .skills-section {
+        padding: 60px;
+        background-color: #f9f9f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .skills-section h2 {
+        font-size: 32px;
+        color: black;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        justify-content: space-between;
+    }
+
+    .technical-skills,
+    .core-technologies {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .technical-skills h3,
+    .core-technologies h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: black;
+    }
+
+    .skill-item {
+        margin-bottom: 20px;
+    }
+
+    .skill-item .label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-size: 16px;
+        color: black;
+    }
+
+    .progress-bar {
+        height: 10px;
+        background-color: #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background-color: #6366f1;
+        width: 0;
+        transition: width 1s ease-in-out;
+    }
+
+    .core-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 20px;
+    }
+
+    .tech-card {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .tech-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px #6366f1;
+    }
+
+    .tech-card i {
+        font-size: 2em;
+        color: #6366f1;
+        margin-bottom: 10px;
+    }
+
+    .tech-card h4 {
+        font-size: 14px;
+        color: black;
+    }
+
+    @media (max-width: 768px) {
+        .skills-grid {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<section class="skills-section">
+    <h2>My Skills</h2>
+    <div class="skills-grid">
+        <!-- Left: Technical Skills -->
+        <div class="technical-skills">
+            <h3>Technical Skills</h3>
+            <div class="skill-item">
+                <div class="label"><span>Django</span><span>95%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="label"><span>Python</span><span>92%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="label"><span>HTML/CSS</span><span>80%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+            </div>
+        </div>
+
+        <!-- Right: Core Technologies -->
+        <div class="core-technologies">
+            <h3>Core Technologies</h3>
+            <div class="core-grid">
+                <div class="tech-card">
+                    <i class="fab fa-python"></i>
+                    <h4>Python</h4>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-html5"></i>
+                    <h4>HTML</h4>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-css3-alt"></i>
+                    <h4>CSS</h4>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-database"></i>
+                    <h4>Sqlite, PostgreSQL</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

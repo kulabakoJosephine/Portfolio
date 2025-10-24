@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .about-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .about-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+  }
+
+  .profile-img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 50% / 40%; /* oval shape */
+    border: 3px solid #6c63ff;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .profile-img {
+      width: 80%;
+      height: auto;
+      margin-top: 30px;
+    }
+
+    .about-row {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+  }
+</style>
+
+<section class="about-section">
+  <div class="container">
+    <h1 class="about-title">{{ about.title }}</h1>
+
+    <div class="row align-items-center about-row">
+      <!-- Left: Text -->
+      <div class="col-md-6">
+        <div class="about-text">
+          <p>{{ about.description }}</p>
+
+          <p>
+            I'm a passionate full-stack developer with expertise in Django backend development.
+            With a strong foundation in web technologies, I create seamless user experiences across platforms.
+          </p>
+
+          <p>
+            My approach combines technical excellence with creative problem-solving. I believe in writing clean, maintainable code
+            and building scalable solutions that can evolve with changing requirements.
+          </p>
+
+          <p>
+            When I'm not coding, I enjoy staying up-to-date with the latest tech trends, contributing to open-source projects,
+            and sharing knowledge with the developer community.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Image -->
+      <div class="col-md-6 text-center">
+        <img src="{% static 'portfolio/images/jose.jpg' %}" alt="Profile Image" class="profile-img">
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

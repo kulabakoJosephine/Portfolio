@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+    .contact-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 50px;
+        padding: 60px;
+        background-color: #f9f9f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .contact-info,
+    .contact-form {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+        height: 500px; /* Medium height */
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .contact-info:hover,
+    .contact-form:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px #6366f1;
+    }
+
+    .contact-info h2,
+    .contact-form h2 {
+        font-size: 28px;
+        color: black;
+        margin-bottom: 20px;
+    }
+
+    .contact-info p {
+        font-size: 16px;
+        margin: 10px 0;
+        color: #555;
+    }
+
+    .contact-info i {
+        margin-right: 10px;
+        color: #6366f1;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 20px;
+        margin-top: auto;
+        align-items: center;
+    }
+
+    .social-icons p {
+        margin-right: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .social-icons a {
+        font-size: 1.8em;
+        color: #6366f1;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        transform: scale(1.2);
+        color: #0f12d4;
+    }
+
+    .contact-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+
+    .contact-form button {
+        padding: 12px;
+        background-color: #6366f1;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover {
+        background-color: #0f12d4;
+    }
+
+    @media (max-width: 768px) {
+        .contact-wrapper {
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        .contact-info,
+        .contact-form {
+            max-width: 100%;
+            height: auto; /* Natural height on small screens */
+        }
+    }
+</style>
+
+<div class="contact-wrapper">
+    <!-- Left Column: Contact Info -->
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> josephinekentrhines@gmail.com</p>
+        <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +256-7</p>
+        <p><i class="fas fa-globe"></i> <strong>Location:</strong> Remote / Worldwide</p>
+        
+        <div class="social-icons">
+            <p>Connect with me</p>
+            <a href="https://github.com/kulabakojosephine" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/kulabako-josephine" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=josephinekentrhines@gmail.com" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-envelope"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Right Column: Contact Form -->
+    <div class="contact-form">
+        <h2>Send a Message</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
