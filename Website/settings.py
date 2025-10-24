@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-z#7mhh9=w92*h%y03sj$=cuyac)qkv2nf%90_m*+m$x^$rofv3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Change to False on Render
 
-ALLOWED_HOSTS = ['*']  # Render domain will be added automatically
+ALLOWED_HOSTS = ['https://portfolio-y2ld.onrender.com']  # Render domain will be added automatically
 
 
 # Application definition
@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -93,10 +94,15 @@ USE_I18N = True
 USE_TZ = True
 
 
-#  Static files (CSS, JavaScript, Images)
+# Static files (CSS, JS)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # required for collectstatic
-STATICFILES_DIRS = [BASE_DIR / 'portfolio' / 'static']  # optional but good practice
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Media files (uploaded images)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'mediafiles'
+
 
 
 # Default primary key field type
