@@ -3,7 +3,6 @@
 
 {% block content %}
 
-<!-- ✅ Internal CSS -->
 <style>
     body {
         background-color: #f0f4f8;
@@ -32,14 +31,18 @@
     .text-section h2 {
         font-size: 24px;
         margin-bottom: 10px;
-        color: #0077b6; /* sky blue */
+        color: #0077b6;
     }
 
-    .highlight {
+    /* ✨ Typing/Re-typing effect WITHOUT the blinking cursor */
+    .typing-container {
         font-size: 40px;
         font-weight: bold;
-        color: #023e8a; /* dark blue */
-        margin-bottom: 20px;
+        color: #023e8a;
+        height: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        /* cursor removed: no border-right */
     }
 
     .text-section p {
@@ -92,11 +95,20 @@
 
     .profile-pic {
         width: 300px;
-        height: 300px;
+        height: 380px;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 50% / 60%;
         border: 4px solid #0077b6;
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.4s ease;
+    }
+
+    .profile-pic:hover {
+        transform: scale(1.08);
+    }
+
+    .profile-pic:active {
+        transform: scale(0.95) rotate(3deg);
     }
 
     @media (max-width: 768px) {
@@ -104,31 +116,62 @@
             flex-direction: column;
             text-align: center;
         }
-
         .image-section {
             margin-top: 20px;
         }
     }
 </style>
 
-<!-- ✅ HTML Content -->
 <div class="home-container">
     <div class="text-section">
         <h2>Hello, I'm a</h2>
-        <h1 class="highlight">Software Developer</h1>
+
+        <!-- ✨ Clean typing animation (NO cursor) -->
+        <h1 class="typing-container" id="typingText"></h1>
+
         <p>
-            Specializing in Django and python development, I build systems with a focus on performance and user experience.
+            Specializing in Django and Python development, I build systems with a focus on performance and user experience.
         </p>
+
         <div class="button-group">
             <a href="{% url 'contact' %}" class="btn primary">Get In Touch</a>
             <a href="{% url 'projects' %}" class="btn secondary">View Projects</a>
             <a href="{% static 'files/Josephine_CV.pdf' %}" class="btn secondary" download>Download CV</a>
         </div>
     </div>
+
     <div class="image-section">
-        
         <img src="{% static 'portfolio/images/baby.jpg' %}" alt="Profile Picture" class="profile-pic">
     </div>
 </div>
+
+<!-- ✨ Typewriter delete/retype script -->
+<script>
+    const text = "Software Developer";
+    const typingElement = document.getElementById("typingText");
+
+    let index = 0;
+    let deleting = false;
+
+    function typeEffect() {
+        if (!deleting) {
+            typingElement.textContent = text.substring(0, index++);
+            if (index > text.length) {
+                deleting = true;
+                setTimeout(typeEffect, 1000);
+                return;
+            }
+        } else {
+            typingElement.textContent = text.substring(0, index--);
+            if (index < 0) {
+                deleting = false;
+                index = 0;
+            }
+        }
+        setTimeout(typeEffect, deleting ? 80 : 120);
+    }
+
+    typeEffect();
+</script>
 
 {% endblock %}

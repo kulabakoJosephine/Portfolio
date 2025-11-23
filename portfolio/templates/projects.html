@@ -2,111 +2,105 @@
 {% load static %}
 {% block content %}
 <style>
-  .project-section {
+  .cards-container {
     display: flex;
-    flex-wrap: wrap;
-    padding: 3rem 2rem;
+    flex-direction: row;
     gap: 2rem;
-    align-items: center;
+    padding: 2rem;
     justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 
-  .project-image {
-    flex: 1 1 600px;
-    max-width: 900px;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+  .card-link {
+    text-decoration: none;
+    color: inherit;
   }
 
-  .project-image img {
+  /* VERTICAL CARD */
+  .v-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #a78bfa;
-    transition: transform 0.3s ease;
+    max-width: 420px;
+    min-height: 520px; /* ensures both cards stay same size */
+    margin: auto;
   }
 
-  .project-image:hover img {
-    transform: scale(1.03);
+  .v-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,255,0.2);
+    background: rgba(173, 216, 230, 0.15);
   }
 
-  .project-image a {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .v-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .v-card img {
     width: 100%;
-    height: 100%;
-    text-indent: -9999px;
-    z-index: 2;
+    height: 280px;
+    object-fit: cover;
   }
 
-  .project-content {
-    flex: 1 1 400px;
-    max-width: 600px;
-    color: #333;
+  .v-card-body {
+    padding: 1.8rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 1; /* allows card body to stretch equally */
+    overflow: hidden; /* prevents scrolling inside card */
   }
 
-  .project-content h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+  .v-card-body h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
     color: #4c1d95;
+    margin-bottom: 0.7rem;
   }
 
-  .project-content h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: #555;
-  }
-
-  .project-content p {
+  .v-card-body p {
     font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .project-content ul {
-    padding-left: 1.2rem;
-    margin-bottom: 1rem;
-  }
-
-  .project-content li {
-    margin-bottom: 0.5rem;
-  }
-
-  @media (max-width: 768px) {
-    .project-section {
-      flex-direction: column;
-    }
+    line-height: 1.5;
+    color: #333;
   }
 </style>
 
-<section class="project-section">
-  <div class="project-image">
+<div class="cards-container">
+
+<!-- CARD 1 -->
+<a href="{% url 'home' %}" class="card-link">
+  <div class="v-card">
     <img src="{% static 'portfolio/images/pro.png' %}" alt="Inventory System Screenshot">
-    <a href="{% url 'home' %}">Go Home</a>
-  </div>
 
-  <div class="project-content">
-    <h2>Inventory Management System</h2>
-    
-    <p>
-     Developed a comprehensive inventory and sales management system for Karibu Groceries Ltd (KGL), a wholesale distributor with two branches. The system digitized all procurement and sales operations previously recorded manually, improving efficiency, accuracy, and real-time tracking of inventory. 
-    </p>
-
-  <section class="project-section">
-  <div class="project-image">
-    <img src="{% static 'portfolio/images/Kigezi.jpg' %}" alt="Goats rare farm Screenshot">
-    <a href="{% url 'home' %}">Go Home</a>
+    <div class="v-card-body">
+      <h2>Inventory Management System</h2>
+      <p>
+        Developed and built a comprehensive Django‑based inventory management system for  Karibu Groceries Ltd (KGL). Developed features for stock management, credit sales tracking, and procurement automation. 
+    </div>
   </div>
+</a>
 
-  <div class="project-content">
-    <h2>Goats rare Farm</h2>
-    
-    <p>
-     Developed a dynamic website for Goats Rare Farm, a goat farming business in Uganda,Kigezi district. The website showcases the farm's services, products, and contact information, providing an online presence to attract potential customers and enhance brand visibility. 
-    </p>
-    
-  
+<!-- CARD 2 -->
+<a href="{% url 'home' %}" class="card-link">
+  <div class="v-card">
+    <img src="{% static 'portfolio/images/Kigezi.jpg' %}" alt="Goats Rare Farm Screenshot">
+
+    <div class="v-card-body">
+      <h2>Goats Rare Farm</h2>
+      <p>
+       I developed a dynamic website for a client in Kigezi. The platform showcases Goats Rare Farm’s services, products, and essential farm information  designed to enhance visibility, usability, and customer engagement.
+      </p>
+    </div>
   </div>
-</section>
+</a>
+
+</div>
 {% endblock %}
