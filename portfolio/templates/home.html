@@ -42,7 +42,6 @@
         height: 50px;
         overflow: hidden;
         white-space: nowrap;
-        /* cursor removed: no border-right */
     }
 
     .text-section p {
@@ -93,6 +92,19 @@
         padding: 20px;
     }
 
+    /* ✨ Swing-in-out floating animation */
+    @keyframes swingInOut {
+        0% {
+            transform: scale(1) translateY(0);
+        }
+        50% {
+            transform: scale(1.06) translateY(-10px);
+        }
+        100% {
+            transform: scale(1) translateY(0);
+        }
+    }
+
     .profile-pic {
         width: 300px;
         height: 380px;
@@ -100,15 +112,8 @@
         border-radius: 50% / 60%;
         border: 4px solid #0077b6;
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.4s ease;
-    }
 
-    .profile-pic:hover {
-        transform: scale(1.08);
-    }
-
-    .profile-pic:active {
-        transform: scale(0.95) rotate(3deg);
+        animation: swingInOut 4s ease-in-out infinite;
     }
 
     @media (max-width: 768px) {
@@ -126,7 +131,7 @@
     <div class="text-section">
         <h2>Hello, I'm a</h2>
 
-        <!-- ✨ Clean typing animation (NO cursor) -->
+        <!-- Clean typing animation -->
         <h1 class="typing-container" id="typingText"></h1>
 
         <p>
@@ -136,16 +141,22 @@
         <div class="button-group">
             <a href="{% url 'contact' %}" class="btn primary">Get In Touch</a>
             <a href="{% url 'projects' %}" class="btn secondary">View Projects</a>
-            <a href="{% static 'files/Josephine_CV.pdf' %}" class="btn secondary" download>Download CV</a>
+
+            <a href="{% static 'files/KULABAKO JOSEPHINE (1).pdf' %}" 
+               class="btn secondary" download>
+               Download CV
+            </a>
         </div>
     </div>
 
     <div class="image-section">
-        <img src="{% static 'portfolio/images/baby.jpg' %}" alt="Profile Picture" class="profile-pic">
+        <img src="{% static 'portfolio/images/baby.jpg' %}" 
+             alt="Profile Picture" 
+             class="profile-pic">
     </div>
 </div>
 
-<!-- ✨ Typewriter delete/retype script -->
+<!--  Typewriter delete/retype script -->
 <script>
     const text = "Software Developer";
     const typingElement = document.getElementById("typingText");
