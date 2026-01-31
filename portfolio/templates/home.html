@@ -4,12 +4,30 @@
 {% block content %}
 
 <style>
+    /* Global Styles */
+    html {
+        scroll-behavior: smooth;
+    }
+    
     body {
         background-color: #f0f4f8;
         color: #333;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
+    /* Section Styles */
+    .section {
+        padding: 80px 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .section:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    /* Home Section */
     .home-container {
         display: flex;
         flex-wrap: wrap;
@@ -34,7 +52,6 @@
         color: #0077b6;
     }
 
-    /* ✨ Typing/Re-typing effect WITHOUT the blinking cursor */
     .typing-container {
         font-size: 40px;
         font-weight: bold;
@@ -92,7 +109,6 @@
         padding: 20px;
     }
 
-    /* ✨ Swing-in-out floating animation */
     @keyframes swingInOut {
         0% {
             transform: scale(1) translateY(0);
@@ -112,10 +128,230 @@
         border-radius: 50% / 60%;
         border: 4px solid #0077b6;
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-
         animation: swingInOut 4s ease-in-out infinite;
     }
 
+    /* About Section */
+    .about-title {
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: bold;
+        color: #333;
+        font-size: 2.5rem;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .profile-img {
+        width: 300px;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 50% / 40%;
+        border: 3px solid #6c63ff;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+
+    /* Skills Section */
+    .skills-section h2 {
+        font-size: 32px;
+        color: black;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        justify-content: space-between;
+    }
+
+    .technical-skills,
+    .core-technologies {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .technical-skills h3,
+    .core-technologies h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: black;
+    }
+
+    .skill-item {
+        margin-bottom: 20px;
+    }
+
+    .skill-item .label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-size: 16px;
+        color: black;
+    }
+
+    .progress-bar {
+        height: 10px;
+        background-color: #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background-color: #6366f1;
+        width: 0;
+        transition: width 1s ease-in-out;
+    }
+
+    .core-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 20px;
+    }
+
+    .tech-card {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .tech-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px #6366f1;
+    }
+
+    .tech-card i {
+        font-size: 2em;
+        color: #6366f1;
+        margin-bottom: 10px;
+    }
+
+    .tech-card h4 {
+        font-size: 14px;
+        color: black;
+    }
+
+    /* Projects Section */
+    .projects-title {
+        text-align: center;
+        margin-bottom: 60px;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        padding: 2rem;
+        justify-content: center;
+        align-items: stretch;
+        flex-wrap: nowrap;
+    }
+
+    @media (max-width: 1200px) {
+        .cards-container {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .cards-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .v-card {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        width: 320px;
+        min-height: 520px;
+        flex: 0 0 auto;
+    }
+
+    .v-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 18px rgba(0,0,255,0.2);
+        background: rgba(173, 216, 230, 0.15);
+    }
+
+    .v-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
+        background-color: #f8f9fa;
+        padding: 10px;
+    }
+
+    .v-card-body {
+        padding: 1.8rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-grow: 1;
+        overflow: hidden;
+    }
+
+    .v-card-body h2 {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #4c1d95;
+        margin-bottom: 0.7rem;
+    }
+
+    .v-card-body p {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #333;
+    }
+
+
+    /* Contact Section */
+    .contact-section {
+        text-align: center;
+    }
+
+    .contact-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
         .home-container {
             flex-direction: column;
@@ -124,43 +360,193 @@
         .image-section {
             margin-top: 20px;
         }
+        .skills-grid {
+            flex-direction: column;
+        }
+        .profile-img {
+            width: 80%;
+            height: auto;
+            margin-top: 30px;
+        }
+        .about-row {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
     }
 </style>
 
-<div class="home-container">
-    <div class="text-section">
-        <h2>Hello, I'm a</h2>
-
-        <!-- Clean typing animation -->
-        <h1 class="typing-container" id="typingText"></h1>
-
-        <p>
-            Specializing in Django and Python development, I build systems with a focus on performance and user experience.
-        </p>
-
-        <div class="button-group">
-            <a href="{% url 'contact' %}" class="btn primary">Get In Touch</a>
-            <a href="{% url 'projects' %}" class="btn secondary">View Projects</a>
-
-            <a href="{% static 'files/KULABAKO JOSEPHINE (1).pdf' %}" 
-               class="btn secondary" download>
-               Download CV
-            </a>
+<!-- Home Section -->
+<section id="home" class="section">
+    <div class="container">
+        <div class="home-container">
+            <div class="text-section">
+                <h2>Hello, I'm a</h2>
+                <h1 class="typing-container" id="typingText"></h1>
+                <p>
+                    Specializing in Django and Python development, I build systems with a focus on performance and user experience.
+                </p>
+                <div class="button-group">
+                    <a href="#contact" class="btn primary">Get In Touch</a>
+                    <a href="#projects" class="btn secondary">View Projects</a>
+                    <a href="{% static 'files/KULABAKO JOSEPHINE (1).pdf' %}" 
+                       class="btn secondary" download>
+                       Download CV
+                    </a>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="{% static 'portfolio/images/baby.jpg' %}" 
+                     alt="Profile Picture" 
+                     class="profile-pic">
+            </div>
         </div>
     </div>
+</section>
 
-    <div class="image-section">
-        <img src="{% static 'portfolio/images/baby.jpg' %}" 
-             alt="Profile Picture" 
-             class="profile-pic">
+<!-- About Section -->
+<section id="about" class="section">
+    <div class="container">
+        <h1 class="about-title">About Me</h1>
+        <div class="row align-items-center about-row">
+            <div class="col-md-6">
+                <div class="about-text">
+                    <p>
+                        I'm a passionate full-stack developer with expertise in Django backend development.
+                        With a strong foundation in web technologies, I create seamless user experiences across platforms.
+                    </p>
+                    <p>
+                        My approach combines technical excellence with creative problem-solving. I believe in writing clean, maintainable code
+                        and building scalable solutions that can evolve with changing requirements.
+                    </p>
+                    <p>
+                        When I'm not coding, I enjoy staying up-to-date with the latest tech trends, contributing to open-source projects,
+                        and sharing knowledge with the developer community.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{% static 'portfolio/images/baby.jpg' %}" alt="Profile Image" class="profile-img">
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
-<!--  Typewriter delete/retype script -->
+<!-- Skills Section -->
+<section id="skills" class="section">
+    <div class="container">
+        <div class="skills-section">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="technical-skills">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-item">
+                        <div class="label"><span>Django</span><span>95%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="label"><span>Python</span><span>92%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="label"><span>HTML/CSS</span><span>80%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+                    </div>
+                </div>
+                <div class="core-technologies">
+                    <h3>Core Technologies</h3>
+                    <div class="core-grid">
+                        <div class="tech-card">
+                            <i class="fab fa-python"></i>
+                            <h4>Python</h4>
+                        </div>
+                        <div class="tech-card">
+                            <i class="fab fa-html5"></i>
+                            <h4>HTML</h4>
+                        </div>
+                        <div class="tech-card">
+                            <i class="fab fa-css3-alt"></i>
+                            <h4>CSS</h4>
+                        </div>
+                        <div class="tech-card">
+                            <i class="fas fa-database"></i>
+                            <h4>Sqlite, PostgreSQL</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="section">
+    <div class="container">
+        <h1 class="projects-title">My Projects</h1>
+        <div class="cards-container">
+            <!-- Obeeoma Project -->
+            <div class="v-card">
+                <img src="{% static 'portfolio/images/obibi.jpeg' %}" alt="Obeeoma Mental Health Platform">
+                <div class="v-card-body">
+                    <h2>Obeeoma - Mental Health Platform</h2>
+                    <p>
+                        <strong>AI-driven B2B SaaS platform</strong> designed to transform workplace mental health across Africa. 
+                        Provides employees with 24/7 access to self-assessment tools, mood tracking, guided exercises and an AI mental health chatbot 
+                        while offering corporations anonymized insights to improve productivity, retention and overall well-being.
+                    </p>
+                    <p>
+                        <strong>Key Features:</strong> Cultural relevance, strong privacy measures, flexible subscription model, 
+                        bridging the gap between mental health needs and accessible digital support for modern workplaces.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Inventory Management System -->
+            <div class="v-card">
+                <img src="{% static 'portfolio/images/pro.png' %}" alt="Inventory System Screenshot">
+                <div class="v-card-body">
+                    <h2>Inventory Management System</h2>
+                    <p>
+                        Developed and built a comprehensive Django-based inventory management system for Karibu Groceries Ltd (KGL). 
+                        Developed features for stock management, credit sales tracking, and procurement automation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Goats Rare Farm -->
+            <div class="v-card">
+                <img src="{% static 'portfolio/images/Kigezi.jpg' %}" alt="Goats Rare Farm Screenshot">
+                <div class="v-card-body">
+                    <h2>Goats Rare Farm</h2>
+                    <p>
+                        I developed a dynamic website for a client in Kigezi. The platform showcases Goats Rare Farm's services, 
+                        products, and essential farm information designed to enhance visibility, usability, and customer engagement.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section">
+    <div class="container contact-section">
+        <h1 class="contact-title">Get In Touch</h1>
+        <p>Feel free to reach out for collaborations, projects, or just a friendly hello!</p>
+        <div class="button-group justify-content-center">
+            <a href="mailto:josephinekentrhines@gmail.com" class="btn primary" target="_blank">Email Me</a>
+            <a href="https://www.linkedin.com/in/kulabako-josephine/" class="btn secondary" target="_blank">LinkedIn</a>
+            <a href="https://github.com/kulabakojosephine" class="btn secondary" target="_blank">GitHub</a>
+        </div>
+    </div>
+</section>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Typing Animation Script -->
 <script>
     const text = "Software Developer";
     const typingElement = document.getElementById("typingText");
-
     let index = 0;
     let deleting = false;
 
@@ -183,6 +569,32 @@
     }
 
     typeEffect();
+
+    // Animate progress bars when skills section comes into view
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progressFills = entry.target.querySelectorAll('.progress-fill');
+                progressFills.forEach(fill => {
+                    const width = fill.style.width;
+                    fill.style.width = '0';
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 100);
+                });
+            }
+        });
+    }, observerOptions);
+
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    }
 </script>
 
 {% endblock %}
