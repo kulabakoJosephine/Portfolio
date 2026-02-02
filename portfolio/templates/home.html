@@ -387,6 +387,26 @@
     100% { transform: scale(1); }
 }
 
+.typing-container {
+    font-size: 40px;
+    font-weight: bold;
+    color: #00aaff;  /* Change to the blue you want */
+}
+
+.breathing-cursor {
+    display: inline-block;
+    color: #00aaff; /* same as text */
+    font-weight: bold;
+    margin-left: 2px;
+    animation: breathe 1.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+
 </style>
 
 <!-- Home Section -->
@@ -396,7 +416,9 @@
             <div class="text-section">
                 <h2>HELLO I'M </h2>
                 <h1 class="name-text">Josephine Kulabako<span class="cursor"></span></h1>
-                <h1 class="typing-container" id="typingText"></h1>
+               <h1 class="typing-container">
+                     Software Engineer<span class="breathing-cursor">|</span>
+                </h1>
                 <p>
                     Specializing in Django and Python development, I build systems with a focus on performance and user experience.
                 </p>
